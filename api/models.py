@@ -11,7 +11,7 @@ class ScrappedItems(models.Model):
 	description = models.TextField()
 	dpe = models.CharField(max_length=5)
 	ges = models.CharField(max_length=5)
-	images = models.TextField()
+	images = models.JSONField()
 	html_content = models.TextField()
 
 
