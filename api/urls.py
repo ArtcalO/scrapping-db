@@ -3,11 +3,7 @@ from rest_framework import routers
 from .views import *
 
 router = routers.DefaultRouter()
-
-router.register("ibisokozo", IgisokozoViewSet)
-router.register("inyishu-igisokozo", InyishuIgisokozoViewSet)
-router.register("collect", IbisokozoCollectedViewSet)
-router.register("leboncoin-scrapped-items", LebonCoinViewSet)
+router.register("scrapped-items", ScrappedItemsViewSet)
 
 urlpatterns = [
     path('',include(router.urls)),

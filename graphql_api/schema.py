@@ -1,26 +1,17 @@
 import graphene
 from graphene_django import DjangoObjectType
 
-from api.models import Igisokozo, InyishuIgisokozo
+from api.models import ScrappedItems
 
-class IgisokozoType(DjangoObjectType):
+class ScrappedItemsType(DjangoObjectType):
     class Meta:
-        model = Igisokozo
-        fields = ("id", "igisokozo", "itariki")
-
-class InyishuIgisokozoType(DjangoObjectType):
-    class Meta:
-        model = InyishuIgisokozo
-        fields = ("id", "igisokozo","inyishu", "itariki")
+        model = ScrappedItems
+        fields = ("adresse","title","prix","type_habitat","surface_habitable","nbr_pieces","description","dpe","ges","images","html_content")
 
 class Query(graphene.ObjectType):
-    ibisokozo_vyose = graphene.List(IgisokozoType)
-    inyishu_zyose = graphene.List(InyishuIgisokozoType)
+    all_scrapped_items = graphene.List(ScrappedItemsType)
 
-    def resolve_ibisokozo_vyose(root, info):
-        return Igisokozo.objects.all()
-
-    def resolve_inyishu_zyose(root, info):
-        return InyishuIgisokozo.objects.select_related("igisokozo").all()
+    def resolve_all_scrapped_items(root, info):
+        return ScrappedItems.objects.all()
 
 schema = graphene.Schema(query=Query)

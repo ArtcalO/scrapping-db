@@ -1,6 +1,6 @@
 from django.db import models
 
-class LebonCoin(models.Model):
+class ScrappedItems(models.Model):
 	id = models.BigAutoField(primary_key=True)
 	adresse = models.CharField(max_length=50)
 	title = models.CharField(max_length=50)
@@ -9,4 +9,14 @@ class LebonCoin(models.Model):
 	surface_habitable = models.CharField(max_length=50)
 	nbr_pieces = models.CharField(max_length=50)
 	description = models.TextField()
+	dpe = models.CharField(max_length=5)
+	ges = models.CharField(max_length=5)
+	images = models.TextField()
+	html_content = models.TextField()
+
+
+
+
+
+
 
