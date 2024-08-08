@@ -7,6 +7,7 @@ class ScrappedItems(models.Model):
 	prix = models.CharField(max_length=50)
 	type_habitat = models.CharField(max_length=50)
 	surface_habitable = models.CharField(max_length=50)
+	surface_terrain = models.CharField(max_length=50)
 	nbr_pieces = models.CharField(max_length=50)
 	description = models.TextField()
 	dpe = models.CharField(max_length=5)
