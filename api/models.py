@@ -13,6 +13,7 @@ class ScrappedItems(models.Model):
 	dpe = models.CharField(max_length=5)
 	ges = models.CharField(max_length=5)
 	images = models.JSONField()
+	image_1 = models.ImageField(upload_to="images/", null=True)
 	html_content = models.TextField()
 
 
