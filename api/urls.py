@@ -4,6 +4,7 @@ from .views import *
 
 router = routers.DefaultRouter()
 router.register("scrapped-items", ScrappedItemsViewSet)
+router.register("test", TestPositiveBingIntegerViewSet)
 
 urlpatterns = [
     path('',include(router.urls)),

@@ -12,30 +12,45 @@ class ScrappedItemsViewSet(viewsets.ModelViewSet):
         adresse = data['adresse']
         title = data['title']
         prix = data['prix']
-        type_habitat = data['type_habitat']
-        surface_habitable = data['surface_habitable']
-        surface_terrain = data['surface_terrain']
-        nbr_pieces = data['nbr_pieces']
-        description = data['description']
-        dpe = data['dpe']
-        ges = data['ges']
-        images = data['images']
-        html_content = data['html_content']
-        image_1 = request.FILES.get('file')
+        # type_habitat = data['type_habitat']
+        # surface_habitable = data['surface_habitable']
+        # surface_terrain = data['surface_terrain']
+        # nbr_pieces = data['nbr_pieces']
+        # description = data['description']
+        # dpe = data['dpe']
+        # ges = data['ges']
+        # images = data['images']
+        # html_content = data['html_content']
+        # image_1 = request.FILES.get('file')
 
         ScrappedItems(
             adresse = adresse,
             title = title,
             prix = prix,
-            type_habitat = type_habitat,
-            surface_habitable = surface_habitable,
-            surface_terrain = surface_terrain,
-            nbr_pieces = nbr_pieces,
-            description = description,
-            dpe = dpe,
-            ges = ges,
-            images = images,
-            html_content = html_content,
-            image_1 = image_1
+            # type_habitat = type_habitat,
+            # surface_habitable = surface_habitable,
+            # surface_terrain = surface_terrain,
+            # nbr_pieces = nbr_pieces,
+            # description = description,
+            # dpe = dpe,
+            # ges = ges,
+            # images = images,
+            # html_content = html_content,
+            # image_1 = image_1
         ).save()
+        return Response({"status":"Datat posted"},201)
+
+class TestPositiveBingIntegerViewSet(viewsets.ModelViewSet):
+    queryset = TestPositiveBingInteger.objects.all()
+    serializer_class = TestPositiveBingIntegerSerializer
+
+    def create(self, request):
+        data = request.data
+        actuel = int(data['actuel'])
+        last = TestPositiveBingInteger.objects.last()
+        print(last.actuel)
+        last.actuel = models.F("actuel") + actuel
+
+        last.save(update_fields=["actuel"])
+        last.refresh_from_db()
         return Response({"status":"Datat posted"},201)
